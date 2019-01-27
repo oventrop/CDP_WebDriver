@@ -17,12 +17,16 @@ public class SimpleTest extends BaseTest {
     public void test() throws InterruptedException {
         openPage(MAIL_RU);
 
-        MainPage mainPage = new MainPage(wd);
+        MainPage mainPage = new MainPage(webDriver);
         Assert.assertTrue(mainPage.isPageLoaded());
 
-        MailBoxPage mailBoxPage = mainPage.loginToMailbox(LOGIN, PASSWORD);
-        Assert.assertTrue(mailBoxPage.isPageLoaded());
+        mainPage.loginToMailbox(LOGIN, PASSWORD);
 
+        //Runtime page selection
+        Assert.assertTrue(getCurrentPage().getClass().isInstance(new MailBoxPage(webDriver)));
+        Assert.assertTrue(getCurrentPage().isPageLoaded());
+
+        MailBoxPage mailBoxPage = getCurrentPage();
         NewEmailPage newEmailPage = mailBoxPage.writeNewEmail();
         Assert.assertTrue(newEmailPage.isPageLoaded());
 

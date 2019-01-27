@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class MailBoxPage extends BasePage {
 
-    MailBoxPage(WebDriver driver) {
+    public MailBoxPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -27,8 +27,14 @@ public class MailBoxPage extends BasePage {
     @FindBy(xpath = "(//*[@href=\"/messages/inbox/\"])[2]")
     WebElement inboxPanelBtn;
 
+    @Override
     public boolean isPageLoaded() {
         return isElementPresent(newMailBtn);
+    }
+
+    @Override
+    public void waitForPageLoad() {
+        waitForElement(newMailBtn, 10);
     }
 
     public DraftsPage openDrafts() {

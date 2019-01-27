@@ -15,21 +15,15 @@ public class DriverFactory {
         return new DriverFactory(browser);
     }
 
-    ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>() {
-        @Override
-        protected WebDriver initialValue() {
-            return new DriverSelector().getDriver(browser);
-        }
-    };
+    private ThreadLocal<WebDriver> webDriver = ThreadLocal.withInitial(() -> new DriverSelector().getDriver(browser));
 
     public WebDriver getDriver() {
-        return driver.get();
+        return webDriver.get();
     }
 
     public void tearDown() {
-        if (driver != null) {
-            driver.get().quit();
-            driver.remove();
+        if (webDriver != null) {
+            webDriver.remove();
         }
     }
 

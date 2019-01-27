@@ -6,9 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class DriverSelector {
+class DriverSelector {
 
-    public WebDriver getDriver(String browserName) {
+    WebDriver getDriver(String browserName) {
         WebDriver wd;
         switch (browserName) {
             case "firefox":

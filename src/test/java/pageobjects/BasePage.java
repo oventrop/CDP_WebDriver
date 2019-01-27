@@ -11,11 +11,11 @@ import java.util.NoSuchElementException;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 
-public class BasePage {
+public abstract class BasePage {
 
     WebDriver driver;
 
-    BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         //set implicit wait
         driver.manage().timeouts().implicitlyWait(20, SECONDS);
@@ -46,4 +46,9 @@ public class BasePage {
         waitForElement(element, timeout);
         return true;
     }
+
+    public abstract boolean isPageLoaded();
+
+    public abstract void waitForPageLoad();
+
 }

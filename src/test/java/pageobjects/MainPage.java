@@ -38,7 +38,13 @@ public class MainPage extends BasePage {
         return new MailBoxPage(driver);
     }
 
+    @Override
     public boolean isPageLoaded (){
         return isElementPresent(submitBtn);
+    }
+
+    @Override
+    public void waitForPageLoad() {
+        waitForElement(loginField, 10);
     }
 }

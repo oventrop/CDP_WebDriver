@@ -62,6 +62,7 @@ public class NewEmailPage extends MailBoxPage {
         driver.switchTo().defaultContent();
     }
 
+    @Override
     public boolean isPageLoaded() {
         return isElementPresent(sendBtn);
     }
