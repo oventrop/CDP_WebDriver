@@ -1,0 +1,104 @@
+{
+  "id": "30062380-ecd6-4780-a2b0-c90255b4f737",
+  "version": "1.1",
+  "name": "youtruba",
+  "url": "https://www.google.cm",
+  "tests": [{
+    "id": "2ddeffb8-162b-460a-806a-16a37f7af09f",
+    "name": "minions",
+    "commands": [{
+      "id": "f64872fe-1731-45bb-93c7-adb7cf4d3d66",
+      "comment": "",
+      "command": "open",
+      "target": "/?gws_rd=ssl",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5701d635-b7ba-469c-a9eb-9f1a84ce1d16",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=input[name=\"q\"]", "css"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "Banana Song"
+    }, {
+      "id": "6d9f873a-8cac-4996-945a-24ecb3d33ee9",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=input[name=\"q\"]", "css"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "dc0a12b4-42a5-4c37-a67b-996549076647",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=resultStats",
+      "targets": [
+        ["id=resultStats", "id"],
+        ["css=#resultStats", "css"],
+        ["css=#resultStats", "css:finder"],
+        ["xpath=//div[@id='resultStats']", "xpath:attributes"],
+        ["xpath=//div[@id='sbfrm_l']/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div[7]/div/div/div/div/div", "xpath:position"]
+      ],
+      "value": "5"
+    }, {
+      "id": "60261c48-8116-46d2-a350-024ce353e205",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//*[contains(.,'Despicable Me 2') and contains(@href,'youtube.com')]",
+      "targets": [
+        ["css=h3.LC20lb", "css"],
+        ["css=.g:nth-child(1) .LC20lb", "css:finder"],
+        ["xpath=//div[@id='rso']/div/div/div/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40d6ae80-fc5e-4118-81cf-98217aaa1eb4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.title > .ytd-video-primary-info-renderer",
+      "targets": [
+        ["css=.title > .ytd-video-primary-info-renderer", "css:finder"],
+        ["xpath=//div[@id='container']/h1/yt-formatted-string", "xpath:idRelative"],
+        ["xpath=//h1/yt-formatted-string", "xpath:position"]
+      ],
+      "value": "Despicable Me 2 | Minions Banana Song (2013) SNSD TTS"
+    }, {
+      "id": "7ecd5bd5-b6aa-4285-ba5f-3862c688ff7f",
+      "comment": "",
+      "command": "assertText",
+      "target": "xpath=//*[matches(., '\\d+ \\d+ \\d+ .*')]",
+      "targets": [
+        ["css=.view-count", "css:finder"],
+        ["xpath=//div[@id='count']/yt-view-count-renderer/span", "xpath:idRelative"],
+        ["xpath=//yt-view-count-renderer/span", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4308cbf5-da14-4c5f-8153-d8125013507f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2ddeffb8-162b-460a-806a-16a37f7af09f"]
+  }],
+  "urls": ["https://www.google.cm/"],
+  "plugins": []
+}

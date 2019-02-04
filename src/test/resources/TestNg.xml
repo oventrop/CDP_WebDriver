@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite">
+  <test name="ChromeTest">
+    <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
+    <parameter name="labrun" value="true"/> <!--true, false -->
+    <classes>
+      <class name="SimpleTest"/>
+    </classes>
+  </test>
+</suite>
