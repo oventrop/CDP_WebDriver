@@ -1,8 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite">
+<suite name="Suite" parallel="tests" thread-count="2">
   <test name="ChromeTest">
     <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
+    <parameter name="labrun" value="true"/> <!--true, false -->
+    <classes>
+      <class name="SimpleTest"/>
+    </classes>
+  </test>
+  <test name="FFTest">
+    <parameter name="browser" value="firefox"/> <!--firefox, chrome -->
     <parameter name="labrun" value="true"/> <!--true, false -->
     <classes>
       <class name="SimpleTest"/>
