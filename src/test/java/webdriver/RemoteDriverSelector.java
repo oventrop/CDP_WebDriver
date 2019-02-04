@@ -19,18 +19,16 @@ public class RemoteDriverSelector {
         switch (browser) {
             case "firefox":
                 try {
-                    DesiredCapabilities caps = DesiredCapabilities.firefox();
-                    caps.setPlatform(platform);
-                    wd = new RemoteWebDriver(new URL(HUB_URL), caps);
+                    FirefoxOptions options = new FirefoxOptions();
+                    wd = new RemoteWebDriver(new URL(HUB_URL), options);
                 } catch (UnreachableBrowserException | MalformedURLException e) {
-                    System.out.println("Server/hub is unavaliable, please try later");
+                    System.out.println("Server/hub is unavailable, please try later");
                 }
                 break;
             case "chrome":
                 try {
-                    DesiredCapabilities caps = DesiredCapabilities.chrome();
-                    caps.setPlatform(platform);
-                    wd = new RemoteWebDriver(new URL(HUB_URL), caps);
+                    ChromeOptions options = new ChromeOptions();
+                    wd = new RemoteWebDriver(new URL(HUB_URL), options);
                 } catch (UnreachableBrowserException | MalformedURLException e) {
                     System.out.println("Server/hub is unavaliable, please try later");
                 }
