@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userList>
+<user name="test1" login="cdp.testing@mail.ru" password="password1234"/>
+<user name="test2" login="cdp.testing@mail.ru" password="password1234"/>
+<user name="test3" login="cdp.testing@mail.ru" password="password1234"/>
+</userList>

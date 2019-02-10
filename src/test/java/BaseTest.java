@@ -1,3 +1,5 @@
+import business.UserFactory;
+import business.users.User;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -44,5 +46,10 @@ public class BaseTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    protected static User getTestUser(String name){
+        UserFactory factory = new UserFactory();
+        return factory.getUser(name);
     }
 }
