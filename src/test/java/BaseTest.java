@@ -12,10 +12,10 @@ public class BaseTest {
     private DriverFactory driverFactory;
     WebDriver webDriver;
 
-    @Parameters({ "browser" })
+    @Parameters({ "browser", "labrun" })
     @BeforeTest
-    public void initDriver(String browser) {
-        driverFactory = DriverFactory.getInstance(browser);
+    public void initDriver(String browser, boolean isLabRun) {
+        driverFactory = DriverFactory.getInstance(browser, isLabRun);
         webDriver = driverFactory.getDriver();
     }
 

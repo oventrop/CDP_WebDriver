@@ -50,5 +50,4 @@ public abstract class BasePage {
     public abstract boolean isPageLoaded();
 
     public abstract void waitForPageLoad();
-
 }
