@@ -6,6 +6,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class Marshaller {
+
     public static Object unmarshall(Class T, String path) {
         try {
             JAXBContext context = JAXBContext.newInstance(T);
