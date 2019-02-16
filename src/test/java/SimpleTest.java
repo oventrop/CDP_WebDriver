@@ -15,8 +15,8 @@ public class SimpleTest extends BaseTest {
     private static final String RECIPIENT = USER.login;
 
     @Test
-    public void test() throws InterruptedException {
-        openPage(MAIL_RU);
+    public void test(){
+        getUrl(MAIL_RU);
 
         MainPage mainPage = new MainPage(webDriver);
         Assert.assertTrue(mainPage.isPageLoaded());

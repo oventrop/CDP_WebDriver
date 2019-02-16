@@ -33,16 +33,14 @@ public class NewEmailPage extends MailBoxPage {
     @FindBy(css = "#tinymce")
     private WebElement bodyField;
 
-    public void saveDraft() throws InterruptedException {
+    public void saveDraft() {
         saveDraftBtn.click();
-        //I'm too lazy to catch small 'saving...' element =)
-        Thread.sleep(3000);
+        pause(3000);
     }
 
-    public void sendEmail() throws InterruptedException {
+    public void sendEmail() {
         sendBtn.click();
-        //I'm too lazy to catch small 'sending...' element =)
-        Thread.sleep(3000);
+        pause(3000);
     }
 
     public void fillAddress(String email) {

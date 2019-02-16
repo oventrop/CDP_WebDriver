@@ -49,4 +49,12 @@ public abstract class BasePage {
     public abstract boolean isPageLoaded();
 
     public abstract void waitForPageLoad();
+
+    public void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

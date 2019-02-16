@@ -15,7 +15,7 @@ public class RemoteDriverSelector {
     private WebDriver wd;
     private static final String HUB_URL = "http://localhost:4444/wd/hub";
 
-    public WebDriver getDriver(String browser, Platform platform) {
+    WebDriver getDriver(String browser, Platform platform) {
         switch (browser) {
             case "firefox":
                 try {

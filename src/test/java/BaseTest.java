@@ -31,16 +31,16 @@ public class BaseTest {
         driverFactory.close();
     }
 
-    void openPage(String url) {
+    void getUrl(String url) {
         webDriver.get(url);
     }
 
     <CurrentPage extends BasePage> CurrentPage getCurrentPage (){
-        waitForNewUrlAppears(3000);
+        pauseForNewUrlAppears(3000);
        return new Switcher(webDriver).getPage();
     }
 
-    public void waitForNewUrlAppears(int timeout) {
+    private void pauseForNewUrlAppears(int timeout) {
         try {
             Thread.sleep(timeout);
         } catch (InterruptedException e) {
@@ -48,7 +48,7 @@ public class BaseTest {
         }
     }
 
-    protected static User getTestUser(String name){
+    public static User getTestUser(String name){
         UserFactory factory = new UserFactory();
         return factory.getUser(name);
     }

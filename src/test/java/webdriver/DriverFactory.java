@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class DriverFactory {
 
     private String browser;
-    ThreadLocal<WebDriver> webDriver;
+    private ThreadLocal<WebDriver> webDriver;
 
     private DriverFactory(String browser, boolean isLabRun) {
         this.browser = browser;
