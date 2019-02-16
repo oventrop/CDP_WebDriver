@@ -10,7 +10,6 @@ import java.util.NoSuchElementException;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-
 public abstract class BasePage {
 
     WebDriver driver;
