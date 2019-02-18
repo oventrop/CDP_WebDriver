@@ -16,6 +16,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.+'
+    testCompile 'com.codeborne:selenide:5.1.0'
 }
 
 task testWD(type: Test) {

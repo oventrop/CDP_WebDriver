@@ -54,7 +54,6 @@ public class NewEmailPage extends MailBoxPage {
     }
 
     public void fillEmailBody(String body) {
-        //WebElement bodyFrame = driver.findElement(By.xpath("//iframe"));
         driver.switchTo().frame(bodyFrame);
         bodyField.sendKeys(body);
         driver.switchTo().defaultContent();
