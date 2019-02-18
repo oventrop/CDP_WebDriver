@@ -7,18 +7,22 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import pageobjects.BasePage;
 import pageobjects.switcher.Switcher;
+import utility.logger.Logger;
+import utility.logger.LoggerFactory;
 import webdriver.DriverFactory;
 
 public class BaseTest {
 
     private DriverFactory driverFactory;
     WebDriver webDriver;
+    Logger logger;
 
-    @Parameters({ "browser", "labrun" })
+    @Parameters({ "browser", "labrun", "enableFileLogging" })
     @BeforeTest
-    public void initDriver(String browser, boolean isLabRun) {
+    public void initDriver(String browser, boolean isLabRun, boolean enableFileLogging) {
         driverFactory = DriverFactory.getInstance(browser, isLabRun);
         webDriver = driverFactory.getDriver();
+        logger = LoggerFactory.getLogger(enableFileLogging);
     }
 
     @AfterSuite

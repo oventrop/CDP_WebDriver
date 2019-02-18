@@ -5,6 +5,9 @@ import pageobjects.DraftsPage;
 import pageobjects.MailBoxPage;
 import pageobjects.MainPage;
 import pageobjects.NewEmailPage;
+import utility.logger.Logger;
+import utility.logger.decorator.EncryptLogger;
+import utility.logger.decorator.HtmlLogger;
 
 public class SimpleTest extends BaseTest {
 
@@ -16,17 +19,23 @@ public class SimpleTest extends BaseTest {
 
     @Test
     public void test(){
+        Logger htmlLogger = new HtmlLogger(logger);
+
+        htmlLogger.log("Open Mail.ru");
         getUrl(MAIL_RU);
 
         MainPage mainPage = new MainPage(webDriver);
         Assert.assertTrue(mainPage.isPageLoaded());
 
+        htmlLogger.log("Login to mailbox");
         mainPage.loginToMailbox(USER.login, USER.password);
 
         //Runtime page selection
         Assert.assertTrue(getCurrentPage().getClass().isInstance(new MailBoxPage(webDriver)));
         Assert.assertTrue(getCurrentPage().isPageLoaded());
 
+        Logger encryptedLogger = new EncryptLogger(htmlLogger);
+        encryptedLogger.log("Welcome to your mailbox!");
         MailBoxPage mailBoxPage = getCurrentPage();
         NewEmailPage newEmailPage = mailBoxPage.writeNewEmail();
         Assert.assertTrue(newEmailPage.isPageLoaded());
