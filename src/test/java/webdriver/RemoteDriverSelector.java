@@ -10,12 +10,12 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RemoteDriverSelector {
+class RemoteDriverSelector {
 
     private WebDriver wd;
     private static final String HUB_URL = "http://localhost:4444/wd/hub";
 
-    WebDriver getDriver(String browser, Platform platform) {
+    WebDriver getDriver(String browser) {
         switch (browser) {
             case "firefox":
                 try {

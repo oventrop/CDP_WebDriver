@@ -7,6 +7,7 @@ public class DriverFactory {
 
     private String browser;
     private ThreadLocal<WebDriver> webDriver;
+    private static DriverFactory factoryInstance = null;
 
     private DriverFactory(String browser, boolean isLabRun) {
         this.browser = browser;
@@ -16,14 +17,16 @@ public class DriverFactory {
             webDriver = localWebDriver;
     }
 
-    public static DriverFactory getInstance(String browser, boolean isLabRun) {
-        return new DriverFactory(browser, isLabRun);
+    public static DriverFactory getFactoryInstance(String browser, boolean isLabRun) {
+        if (factoryInstance == null) {
+            factoryInstance = new DriverFactory(browser, isLabRun);
+        }
+        return factoryInstance;
     }
 
     private ThreadLocal<WebDriver> localWebDriver = ThreadLocal.withInitial(() -> new LocalDriverSelector().getDriver(browser, getOs()));
 
-    private ThreadLocal<WebDriver> remoteWebDriver = ThreadLocal.withInitial(() -> new RemoteDriverSelector().getDriver(browser, getOs()));
-
+    private ThreadLocal<WebDriver> remoteWebDriver = ThreadLocal.withInitial(() -> new RemoteDriverSelector().getDriver(browser));
 
     public WebDriver getDriver() {
         return webDriver.get();
@@ -36,7 +39,7 @@ public class DriverFactory {
     }
 
     public void close() {
-        getDriver().close();
+        webDriver.get().close();
     }
 
     private Platform getOs() {
