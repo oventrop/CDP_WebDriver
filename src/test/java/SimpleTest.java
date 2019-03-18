@@ -5,9 +5,9 @@ import pageobjects.DraftsPage;
 import pageobjects.MailBoxPage;
 import pageobjects.MainPage;
 import pageobjects.NewEmailPage;
-import utility.logger.Logger;
-import utility.logger.decorator.EncryptLogger;
-import utility.logger.decorator.HtmlLogger;
+
+import static utility.SimpleLogger.logger;
+
 
 public class SimpleTest extends BaseTest {
 
@@ -18,28 +18,27 @@ public class SimpleTest extends BaseTest {
     private static final String RECIPIENT = USER.login;
 
     @Test
-    public void test(){
-        Logger htmlLogger = new HtmlLogger(logger);
+    public void test() {
 
-        htmlLogger.log("Open Mail.ru");
+        logger.info("Open Mail.ru");
         getUrl(MAIL_RU);
 
         MainPage mainPage = new MainPage(webDriver);
         Assert.assertTrue(mainPage.isPageLoaded());
 
-        htmlLogger.log("Login to mailbox");
+        logger.info("Login to mailbox");
         mainPage.loginToMailbox(USER.login, USER.password);
 
         //Runtime page selection
         Assert.assertTrue(getCurrentPage().getClass().isInstance(new MailBoxPage(webDriver)));
         Assert.assertTrue(getCurrentPage().isPageLoaded());
 
-        Logger encryptedLogger = new EncryptLogger(htmlLogger);
-        encryptedLogger.log("Welcome to your mailbox!");
+        logger.trace("Welcome to your mailbox!");
         MailBoxPage mailBoxPage = getCurrentPage();
         NewEmailPage newEmailPage = mailBoxPage.writeNewEmail();
         Assert.assertTrue(newEmailPage.isPageLoaded());
 
+        logger.info("Create new email");
         newEmailPage.fillAddress(RECIPIENT);
         newEmailPage.fillSubject(SUBJECT);
         newEmailPage.fillEmailBody("some body");

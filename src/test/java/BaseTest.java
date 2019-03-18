@@ -7,22 +7,20 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import pageobjects.BasePage;
 import pageobjects.switcher.Switcher;
-import utility.logger.Logger;
-import utility.logger.LoggerFactory;
 import webdriver.DriverFactory;
+
+import static utility.SimpleLogger.logger;
 
 public class BaseTest {
 
     private DriverFactory driverFactory;
     WebDriver webDriver;
-    Logger logger;
 
     @Parameters({ "browser", "labrun", "enableFileLogging" })
     @BeforeTest
     public void initDriver(String browser, boolean isLabRun, boolean enableFileLogging) {
         driverFactory = DriverFactory.getFactoryInstance(browser, isLabRun);
         webDriver = driverFactory.getDriver();
-        logger = LoggerFactory.getLogger(enableFileLogging);
     }
 
     @AfterSuite
@@ -39,20 +37,22 @@ public class BaseTest {
         webDriver.get(url);
     }
 
-    <CurrentPage extends BasePage> CurrentPage getCurrentPage (){
+    <CurrentPage extends BasePage> CurrentPage getCurrentPage() {
         pauseForNewUrlAppears(3000);
-       return new Switcher(webDriver).getPage();
+        return new Switcher(webDriver).getPage();
     }
 
     private void pauseForNewUrlAppears(int timeout) {
         try {
+            logger.info("Wait for URL");
             Thread.sleep(timeout);
         } catch (InterruptedException e) {
+            logger.error("Failed to pause thread!");
             e.printStackTrace();
         }
     }
 
-    public static User getTestUser(String name){
+    public static User getTestUser(String name) {
         UserFactory factory = new UserFactory();
         return factory.getUser(name);
     }
