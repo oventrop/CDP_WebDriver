@@ -1,26 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite" parallel="tests" thread-count="2">
+  <listeners>
+    <listener class-name="listeners.TestListeners"/>
+  </listeners>
   <test name="SimpleTest">
     <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
     <parameter name="labrun" value="false"/> <!--true, false -->
-    <parameter name="enableFileLogging" value="false"/> <!--true, false -->
-    <classes>
-      <class name="SimpleTest"/>
-    </classes>
-  </test>
-  <test name="SimpleTest2">
-    <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
-    <parameter name="labrun" value="false"/> <!--true, false -->
-    <parameter name="enableFileLogging" value="false"/> <!--true, false -->
-    <classes>
-      <class name="SimpleTest"/>
-    </classes>
-  </test>
-  <test name="SimpleTest3">
-    <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
-    <parameter name="labrun" value="false"/> <!--true, false -->
-    <parameter name="enableFileLogging" value="false"/> <!--true, false -->
+    <groups>
+      <run>
+        <include name="functest"/>
+      </run>
+    </groups>
     <classes>
       <class name="SimpleTest"/>
     </classes>

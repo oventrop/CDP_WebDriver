@@ -16,9 +16,9 @@ public class BaseTest {
     private DriverFactory driverFactory;
     WebDriver webDriver;
 
-    @Parameters({ "browser", "labrun", "enableFileLogging" })
+    @Parameters({ "browser", "labrun" })
     @BeforeTest
-    public void initDriver(String browser, boolean isLabRun, boolean enableFileLogging) {
+    public void initDriver(String browser, boolean isLabRun) {
         driverFactory = DriverFactory.getFactoryInstance(browser, isLabRun);
         webDriver = driverFactory.getDriver();
     }

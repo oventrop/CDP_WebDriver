@@ -57,4 +57,10 @@ public class SimpleTest extends BaseTest {
         Assert.assertTrue(draftsPage.isPageLoaded());
         Assert.assertFalse(draftsPage.isDraftMessagePresent(RECIPIENT, SUBJECT));
     }
+
+    @Test (groups = {"functest"})
+    public void testSample() {
+        Assert.assertTrue(true);
+    }
+
 }
