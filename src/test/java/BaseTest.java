@@ -17,7 +17,7 @@ public class BaseTest {
     WebDriver webDriver;
 
     @Parameters({ "browser", "labrun" })
-    @BeforeTest
+    @BeforeTest (alwaysRun = true)
     public void initDriver(String browser, boolean isLabRun) {
         driverFactory = DriverFactory.getFactoryInstance(browser, isLabRun);
         webDriver = driverFactory.getDriver();

@@ -49,7 +49,8 @@ public class TestListeners implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        logger.error("TEST FAILED");
+        logger.info("Test SUCCESS: " + result.getName());
+        getScreenshot();
     }
 
     @Override
@@ -59,12 +60,13 @@ public class TestListeners implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        logger.info("TEST STARTED");
+        logger.info("Test class STARTED: " + result.getTestClass().getName());
+        logger.info("Test STARTED: " + result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        logger.info("TEST SUCCESS!");
+        logger.info("Test SUCCESS: " + result.getName());
         getScreenshot();
     }
 

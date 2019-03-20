@@ -7,11 +7,6 @@
   <test name="SimpleTest">
     <parameter name="browser" value="chrome"/> <!--firefox, chrome -->
     <parameter name="labrun" value="false"/> <!--true, false -->
-    <groups>
-      <run>
-        <include name="functest"/>
-      </run>
-    </groups>
     <classes>
       <class name="SimpleTest"/>
     </classes>

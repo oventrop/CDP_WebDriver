@@ -58,7 +58,7 @@ public class SimpleTest extends BaseTest {
         Assert.assertFalse(draftsPage.isDraftMessagePresent(RECIPIENT, SUBJECT));
     }
 
-    @Test (groups = {"functest"})
+
     public void testSample() {
         Assert.assertTrue(true);
     }
