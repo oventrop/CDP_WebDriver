@@ -2,15 +2,18 @@ package listeners;
 
 import static utility.SimpleLogger.logger;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.util.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -49,8 +52,8 @@ public class TestListeners implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        logger.info("Test SUCCESS: " + result.getName());
-        getScreenshot();
+        logger.info("Test FAILURE: " + result.getName());
+        saveScreenshot(getScreenshot());
     }
 
     @Override
@@ -67,7 +70,8 @@ public class TestListeners implements ITestListener, ISuiteListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         logger.info("Test SUCCESS: " + result.getName());
-        getScreenshot();
+        logOutput(Reporter.getOutput(result));
+        saveScreenshot(getScreenshot());
     }
 
     private String generateScreenshotName() {
@@ -76,15 +80,39 @@ public class TestListeners implements ITestListener, ISuiteListener {
         return formatter.format(now.getTime());
     }
 
-    private void getScreenshot() {
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshot(File imageFile) {
+        try {
+            if (imageFile.exists()) {
+                return com.google.common.io.Files.toByteArray(imageFile);
+            }
+        } catch (Exception e) {
+            logger.error("FAILED TO GET FILE");
+        }
+        throw new RuntimeException();
+    }
+
+    public File getScreenshot() {
         BufferedImage image = null;
+        File f = null;
         try {
             image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
             String fileName = generateScreenshotName();
-            ImageIO.write(image, "png", new File(String.format(OUTPUT_DIRECTORY + "/%s.png", fileName)));
+            f = new File(String.format(OUTPUT_DIRECTORY + "/%s.png", fileName));
+            ImageIO.write(image, "png", f);
+            return f;
         } catch (AWTException | IOException e) {
             e.printStackTrace();
+            throw new RuntimeException();
         }
+    }
+
+    @Attachment
+    public String logOutput(List<String> outputList) {
+        String output = "";
+        for (String o : outputList)
+            output += o + "<br/>";
+        return output;
     }
 
     private void clearOutputDirectory() {

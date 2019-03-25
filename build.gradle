@@ -1,11 +1,23 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.7.0"
+    }
+}
+
 plugins {
     id 'groovy'
     id 'java'
-    id "io.qameta.allure" version "2.7.0"
 }
 
-group 'test-gradle'
-version '1.0-SNAPSHOT'
+apply plugin: 'io.qameta.allure'
+
+allure {
+    autoconfigure = true
+    version = '2.7.0'
+}
 
 sourceCompatibility = 1.8
 
@@ -31,9 +43,3 @@ task testWD(type: Test) {
     }
 }
 
-apply plugin: 'io.qameta.allure'
-
-allure {
-    autoconfigure = true
-    version = '2.4.1'
-}
